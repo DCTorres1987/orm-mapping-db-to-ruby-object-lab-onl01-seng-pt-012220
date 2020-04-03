@@ -28,6 +28,7 @@ class Student
     DB[:conn].execute(sql, name).map do |row|
       self.new_from_db(row)
     end.first
+<<<<<<< HEAD
   end
 
   def self.all_students_in_grade_9
@@ -96,7 +97,19 @@ class Student
       self.new_from_db(row)
       
     end
+=======
+>>>>>>> e6fb835886297cdb8c912dadbef4c44ff884cc5f
   end
+
+  def self.all_students_in_grade_9
+      sql = <<-SQL
+      SELECT *
+      FROM students WHERE grade = 9
+    SQL
+ 
+    DB[:conn].execute(sql).map do |row|
+      self.new_from_db(row)
+  end 
   
   def save
     sql = <<-SQL
@@ -117,6 +130,7 @@ class Student
     SQL
 
     DB[:conn].execute(sql)
+    end
   end
 
   def self.drop_table
